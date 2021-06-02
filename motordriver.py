@@ -22,7 +22,7 @@ class MD13S:
         
 
     def get_motor_speed(self):
-        motorspeed = self._feedback.value
+        speed = self._feedback.position # the current position in terms of pulses 
 
 
        
