@@ -6,7 +6,9 @@ from pwmio import PWMOut
 import math
 
 class MD13S:
-
+# Encoder resolution: 48 counts per motor shaft revolution
+# Gear ratio: 30:1
+# 
     def __init__(self, PWM_pin, dir_pin, enc_pin_A, enc_pin_B):
 
         self.PWMpin = PWM_pin

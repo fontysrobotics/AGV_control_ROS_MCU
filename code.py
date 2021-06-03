@@ -3,7 +3,10 @@ import board
 import math 
 import IRsensor
 import adafruit_hcsr04
-
+import motordriver
+import fan 
+import Temperature
+import BMS
 #instances Infrared distance sensors Front and rear
 IRsensorFront = IRsensor.IRsensor(board.A14)
 IRsensorRear = IRsensor.IRsensor(board.A15)
