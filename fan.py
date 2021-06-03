@@ -1,4 +1,0 @@
-import board 
-
-class PWMfan: 
-    
