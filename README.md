@@ -1,12 +1,14 @@
 # DACS AGV software for circuit python 
 
-Simple overview of use/purpose.
+This code is used for the DACS project 
 
 ## Description
 
 An in-depth paragraph about your project and overview of use.
 
+
 ## Getting Started
+Install the circuitpython bundle in visual studio code 
 
 ### Dependencies
 
@@ -14,8 +16,19 @@ An in-depth paragraph about your project and overview of use.
 * ex. Windows 10
 
 ### Installing
-
-* How/where to download your program
+Install all the circuitpython adafruit bundles below for pip below 
+```
+pip3 install adafruit-circuitpython-lis3dh
+```
+```
+pip3 install adafruit-circuitpython-mcp9808
+```
+```
+pip3 install adafruit-circuitpython-hcsr04
+```
+```
+pip3 install adafruit-circuitpython-ina260
+```
 * Any modifications needed to be made to files/folders
 
 ### Executing program
@@ -26,14 +39,7 @@ An in-depth paragraph about your project and overview of use.
 code blocks for commands
 ```
 
-## Help
-
-Any advise for common problems or issues.
-```
-command to run if program contains helper info
-```
-
 ## Authors
-
-Contributors names and contact info
+Quirine Engbers student nr: 
+Dirk Remie student nr: 3597571
 
