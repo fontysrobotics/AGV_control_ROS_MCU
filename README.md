@@ -12,8 +12,9 @@ Install the circuitpython bundle in visual studio code
 
 ### Dependencies
 
-* Describe any prerequisites, libraries, OS version, etc., needed before installing program.
-* ex. Windows 10
+* python 3 and pip3 
+* visual studio code with cirquitpython library
+* Adafruit Grand Central M4 Express MCU for deploying
 
 ### Installing
 Install all the circuitpython adafruit bundles below for pip below 
