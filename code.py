@@ -24,19 +24,5 @@ USsensorRL = adafruit_hcsr04.HCSR04(trigger_pin=board.D28, echo_pin=board.D29)
 FanPWM = PWMOut(pin = board.D3, frequency=5000, duty_cycle=0)
 
 
-states=['STOP', 'STARTING', 'RUNNING', 'SAFE']
-
-# And some transitions between states. We're lazy, so we'll leave out
-# the inverse phase transitions (freezing, condensation, etc.).
-transitions = [
-    { 'trigger': 'userStart', 'source': 'STOP', 'dest': 'START' },
-    { 'trigger': 'initDone', 'source': 'START', 'dest': 'RUNNING' },
-    { 'trigger': 'safetyHazard', 'source': 'RUNNING', 'dest': 'SAFE' },
-    { 'trigger': 'ionize', 'source': 'SAFE', 'dest': 'STOP' }
-]
-
-# Initialize
-machine = Machine(AGV, states=states, transitions=transitions, initial='STOP')
-
 
 

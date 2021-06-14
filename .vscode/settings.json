@@ -7,8 +7,8 @@
     "python.analysis.extraPaths": [
         null,
         "/home/student/.vscode/extensions/joedevivo.vscode-circuitpython-0.1.13/stubs",
-        "/home/student/.config/Code/User/globalStorage/joedevivo.vscode-circuitpython/bundle/20210601/adafruit-circuitpython-bundle-py-20210601/lib"
+        "/home/student/.config/Code/User/globalStorage/joedevivo.vscode-circuitpython/bundle/20210612/adafruit-circuitpython-bundle-py-20210612/lib"
     ],
     "circuitpython.board.version": "6.2.0",
-    "python.pythonPath": "/usr/local/bin/python3"
+    "python.pythonPath": "/bin/python3"
 }
