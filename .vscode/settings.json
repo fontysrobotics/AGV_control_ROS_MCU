@@ -10,5 +10,5 @@
         "/home/student/.config/Code/User/globalStorage/joedevivo.vscode-circuitpython/bundle/20210601/adafruit-circuitpython-bundle-py-20210601/lib"
     ],
     "circuitpython.board.version": "6.2.0",
-    "python.pythonPath": "/Library/Frameworks/Python.framework/Versions/3.9/bin/python3"
+    "python.pythonPath": "/usr/local/bin/python3"
 }
