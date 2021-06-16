@@ -6,6 +6,17 @@ This code is used for the DACS project
 
 An in-depth paragraph about your project and overview of use.
 
+### Main program code.py
+
+### Statemachine
+![alt text](https://github.com/fontysrobotics/AGV_control_ROS_MCU/blob/master/agv_state_diagram.png?raw=true)
+
+### Objects
+
+#### motordriver
+
+#### IR sensor
+
 
 ## Getting Started
 Install the circuitpython bundle in visual studio code 
