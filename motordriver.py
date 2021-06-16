@@ -21,7 +21,7 @@ class MD13S:
     
 
     def speed_control(self, speedvector):
-        self._pwm.duty_cycle = motor_setpoint - 
+        self._pwm.duty_cycle
         
 
     def get_motor_speed(self):
