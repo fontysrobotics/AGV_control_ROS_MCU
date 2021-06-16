@@ -1,15 +1,17 @@
 import time
-import board 
+#import board 
 import math 
-import IRsensor
-import adafruit_hcsr04
-import motordriver
-import Temperature
-import BMS
-from pwmio import PWMOut
-from transitions import machine 
+#import IRsensor
+#import adafruit_hcsr04
+#import motordriver
+#import Temperature
+#import BMS
+#from pwmio import PWMOut
+import statemachine as agv_machine
+from transitions.core import Transition
+from transitions.extensions import GraphMachine as Machine
 
-
+'''
 #instances Infrared distance sensors Front and rear
 IRsensorFront = IRsensor.IRsensor(board.A14)
 IRsensorRear = IRsensor.IRsensor(board.A15)
@@ -22,7 +24,14 @@ USsensorRL = adafruit_hcsr04.HCSR04(trigger_pin=board.D28, echo_pin=board.D29)
 
 # Fans
 FanPWM = PWMOut(pin = board.D3, frequency=5000, duty_cycle=0)
+'''
 
+model = agv_machine
+machine = Machine(model=model, states=model.agv_machine.states, transitions=model.agv_machine.transitions, 
+                       show_auto_transitions=False, **model.agv_machine.extra_args, use_pygraphviz=False)
 
+model.get_graph().draw('agv_state_diagram.png', prog='dot')
 
+if __name__ == '__main__':
+    print(model.state)
 
