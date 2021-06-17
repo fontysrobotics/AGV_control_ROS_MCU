@@ -68,7 +68,10 @@ code blocks for commands
 
 ## Author
 Dirk Remie 
+
 student nr: 3597571
+
 Organisation: Fontys University, minor AR 
+
 Eindhoven, Juli 2021
 
