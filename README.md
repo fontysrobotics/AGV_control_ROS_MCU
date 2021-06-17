@@ -6,7 +6,7 @@ This code is used for the DACS project.
 The DACS project is a Fontys university project, this project is related to the Adaptive robotics minor. DACS focusses on robotic cleaning solutions for offices and hotels. This code is used for the control unit of the DACS AGV, the AGV is a inhouse developed robot platform. On this platform cleaning solutions like plinth cleaning can be implemented. The navigation and user interface of the interface is prossesed in a industrial computer in the AGV. The control and processing of all the sensors and actuators in the AGV are controlled with a MCU, this code is used to program the MCU. 
  
 ## Table of Contents
-- [Description](#code-description)
+- [Code description](#code-description)
     - [Main program](#main-program-code.py)
     - [Statemachine](#statemachine)
     - [Objects](#objects)
@@ -15,7 +15,7 @@ The DACS project is a Fontys university project, this project is related to the 
 - [Getting Started](#getting-started)
     - [Dependencies](#dependencies)
     - [Installing](#installing)
-    - [Execute Program](#execute-program)
+    - [Executing Program](#executing-program)
 
 ## Code description
 
@@ -66,8 +66,9 @@ pip3 install adafruit-circuitpython-ina260
 code blocks for commands
 ```
 
-## Authors
-Quirine Engbers student nr: 
-
-Dirk Remie student nr: 3597571
+## Author
+Dirk Remie 
+student nr: 3597571
+Organisation: Fontys University, minor AR 
+Eindhoven, Juli 2021
 
