@@ -1,8 +1,23 @@
 # DACS AGV software for circuit python 
 
-This code is used for the DACS project 
+This code is used for the DACS project. 
 
-## Description
+## Preface
+The DACS project is a Fontys university project, this project is related to the Adaptive robotics minor. DACS focusses on robotic cleaning solutions for offices and hotels. This code is used for the control unit of the DACS AGV, the AGV is a inhouse developed robot platform. On this platform cleaning solutions like plinth cleaning can be implemented. The navigation and user interface of the interface is prossesed in a industrial computer in the AGV. The control and processing of all the sensors and actuators in the AGV are controlled with a MCU, this code is used to program the MCU. 
+ 
+## Table of Contents
+- [Description](#code-description)
+    - [Main program](#main-program-code.py)
+    - [Statemachine](#statemachine)
+    - [Objects](#objects)
+        - [Motordriver](#motordriver)
+        - [IR sensor](#ir-sensor)
+- [Getting Started](#getting-started)
+    - [Dependencies](#dependencies)
+    - [Installing](#installing)
+    - [Execute Program](#execute-program)
+
+## Code description
 
 An in-depth paragraph about your project and overview of use.
 
@@ -13,13 +28,13 @@ An in-depth paragraph about your project and overview of use.
 
 ### Objects
 
-#### motordriver
+#### Motordriver
 
 #### IR sensor
 
 
 ## Getting Started
-Install the circuitpython bundle in visual studio code 
+Install the circuitpython extension in visual studio code 
 
 ### Dependencies
 
