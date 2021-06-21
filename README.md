@@ -24,7 +24,7 @@ An in-depth paragraph about your project and overview of use.
 ### Main program code.py
 
 ### Statemachine
-![alt text](https://github.com/fontysrobotics/AGV_control_ROS_MCU/blob/master/agv_state_diagram.png?raw=true)
+![alt text](https://github.com/fontysrobotics/AGV_control_ROS_MCU/blob/master/StateMachineMCU.png?raw=true)
 
 ### Objects
 
