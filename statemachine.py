@@ -26,7 +26,7 @@ class agv_machine(object):
         {'name': 'STOP', 'on_enter': ['stop_procedure','LED_yellow'], 'on_exit': 'StatusMessage'},
         {'name': 'START', 'on_enter': ['LED_blue','instantiate'], 'on_exit': 'StatusMessage'},
         {'name': 'RUNNING', 'on_enter': ['LED_green', 'driving'], 'on_exit': 'StatusMessage'},
-        {'name': 'SAFE', 'on_enter': ['LED_blinkFastRed''safety_procedure'], 'on_exit': 'StatusMessage'},
+        {'name': 'SAFE', 'on_enter': ['LED_blinkFastRed','safety_procedure'], 'on_exit': 'StatusMessage'},
         {'name': 'BATTERYLOW', 'on_enter': ['LED_red','lowpower_mode'], 'on_exit': 'StatusMessage'}
         ]
 
