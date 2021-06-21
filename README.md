@@ -47,6 +47,7 @@ Install all the circuitpython adafruit bundles below for pip below
 ```
 pip3 install adafruit-circuitpython-lis3dh
 ```
+pip3 install --user circup && circup install adafruit-circuitpython-register
 ```
 pip3 install adafruit-circuitpython-mcp9808
 ```
