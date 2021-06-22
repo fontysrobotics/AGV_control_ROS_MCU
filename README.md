@@ -47,7 +47,9 @@ Install all the circuitpython adafruit bundles below for pip below
 ```
 pip3 install adafruit-circuitpython-lis3dh
 ```
+```
 pip3 install --user circup && circup install adafruit-circuitpython-register
+```
 ```
 pip3 install adafruit-circuitpython-mcp9808
 ```
@@ -56,6 +58,9 @@ pip3 install adafruit-circuitpython-hcsr04
 ```
 ```
 pip3 install adafruit-circuitpython-ina260
+```
+```
+pip3 install adafruit-circuitpython-neopixel
 ```
 * Any modifications needed to be made to files/folders
 

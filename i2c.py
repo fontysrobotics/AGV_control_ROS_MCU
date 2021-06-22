@@ -7,9 +7,9 @@ class i2c_bus():
     def __init__(self):
         self.i2c = board.I2C()
 
-        self.mcp_1 = adafruit_mcp9808.MCP9808(self.i2c, 0x19)
-        self.mcp_2 = adafruit_mcp9808.MCP9808(self.i2c, 0x18)
-        self.temperature = [self.mcp_1.temperature, self.mcp_2.temperature]
+#        self.mcp_1 = adafruit_mcp9808.MCP9808(self.i2c, 0x19)
+#        self.mcp_2 = adafruit_mcp9808.MCP9808(self.i2c, 0x18)
+#        self.temperature = [self.mcp_1.temperature, self.mcp_2.temperature]
        
 
         while not self.i2c.try_lock():
