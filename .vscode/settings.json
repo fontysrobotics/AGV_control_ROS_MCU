@@ -10,7 +10,11 @@
         "/home/student/.config/Code/User/globalStorage/joedevivo.vscode-circuitpython/bundle/20210622/adafruit-circuitpython-bundle-py-20210622/lib"
     ],
     "circuitpython.board.version": "6.2.0",
+<<<<<<< HEAD
     "python.pythonPath": "/usr/bin/python3",
+=======
+    "python.pythonPath": "/usr/local/bin/python3",
+>>>>>>> 4fabc78d46a502ddf317cf2638308c5ace5ad3d9
     "python.autoComplete.extraPaths": [
         null,
         "/home/student/.vscode/extensions/joedevivo.vscode-circuitpython-0.1.9/stubs",
