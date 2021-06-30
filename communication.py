@@ -1,4 +1,7 @@
 import supervisor
+import adafruit_mpc9808
+import board
+
 
 class serial:
     def __init__(self, o_data, status):
@@ -37,6 +40,22 @@ class serial:
 
     def status_message(self):
         print(self.Status)
+
+
+class i2c():
+    def __init__(self):
+        self.i2c = board.I2C()
+       
+        while not self.i2c.try_lock():
+            pass   
+        
+        self.adress = [hex(device_address) for device_address in self.i2c.scan()]
+
+    def return_adress(self):
+        return self.adress
+
+    def exit(self):
+        self.i2c.unlock()
 
 
    

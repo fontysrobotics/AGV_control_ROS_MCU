@@ -1,7 +1,10 @@
+from Sensoren_sender import IRsensorFront, IRsensorRear
 import time
 import board
 import IRsensor
 import adafruit_hcsr04
+import adafruit_mcp9808
+import adafruit_ina260
 import motordriver
 from pwmio import PWMOut
 import LED
@@ -10,10 +13,6 @@ import communication
 
 
 class Statemachine:
-
-    # BMS
-    charging = BMS.charging
-    BatteryLevel = BMS.BateryLevel
 
     # Emergency Stop
     emergencyStop = board.D40
@@ -37,6 +36,19 @@ class Statemachine:
 
     # Communication Vars
     serial = communication.serial()
+    Tsensor1 = communication.i2c()
+    Tsensor2 = communication.i2c()
+    Vsensor = communication.i2c()
+
+    # Temperature sensors
+    TbatF = adafruit_mcp9808.MCP9808(Tsensor1.i2c, Tsensor1.adress)
+    TbatR = adafruit_mcp9808.MCP9808(Tsensor2.i2c, Tsensor2.adress)
+
+    # BMS
+    BMS = adafruit_ina260.INA260(Vsensor.i2c, Vsensor.adress)
+    BatteryLevel = (BMS.voltage-11)/5.8*100
+    charging = DigitalInOut(board.D39)
+    charging.direction = Direction.INPUT
 
     # Fans
     FanPWM = PWMOut(pin = board.D31, frequency=5000, duty_cycle=0)
@@ -77,7 +89,7 @@ class Statemachine:
                 self.state = 5
                 self.serial.status_message(self.state) # Status message to master
                 
-            elif self.charging:
+            elif self.charging.value:
                 self.state = 4
                 self.serial.status_message(self.state) # Status message to master
         
@@ -85,16 +97,18 @@ class Statemachine:
         # Running state
         elif self.state == 2:
             self.LEDstatus.green()
+            communication.serial.read_data()
+            self.handle_data()
  
             if self.serial.userInput == "stop":
                 self.state = 1
                 self.serial.status_message(self.state) # Status message to master
 
-            elif self.emergencyStop or self.Tbat > self.TbatMax or Fdist < MaxDist or Rdist < MaxDist:
+            elif self.emergencyStop or self.TbatF.temperature>60 or self.TbatR.temperature>60 or IRsensorFront.get_distance_IR()<5 or IRsensorRear.get_distance_IR()<5:
                 self.state = 5
                 self.serial.status_message(self.state) # Status message to master
                 
-            elif self.charging:
+            elif self.charging.value:
                 self.state = 4
                 self.serial.status_message(self.state) # Status message to master
                 
@@ -107,15 +121,15 @@ class Statemachine:
         elif self.state == 3:
             self.LEDstatus.red()
 
-            if self.charging:
+            if self.charging.value:
                 self.state = 4
                 self.serial.status_message(self.state) # Status message to master
 
-            elif self.BatteryLevel>20 and not self.charging:
+            elif self.BatteryLevel>20 and not self.charging.value:
                 self.state = 3
                 self.serial.status_message(self.state) # Status message to master
             
-            elif self.emergencyStop or self.Tbat > self.TbatMax or Fdist < MaxDist or Rdist < MaxDist:
+            elif self.emergencyStop or self.TbatF.temperature>60 or self.TbatR.temperature>60 or IRsensorFront.get_distance_IR()<5 or IRsensorRear.get_distance_IR()<5:
                 self.state = 5
                 self.serial.status_message(self.state) # Status message to master
 
@@ -124,15 +138,15 @@ class Statemachine:
         elif self.state == 4:
             self.LEDstatus.blink_red_blue()
 
-            if self.BatteryLevel<20 and not self.charging:
+            if self.BatteryLevel<20 and not self.charging.value:
                 self.state = 3
                 self.serial.status_message(self.state) # Status message to master
 
-            elif self.BatteryLevel>20 and not self.charging:
+            elif self.BatteryLevel>20 and not self.charging.value:
                 self.state = 1
                 self.serial.status_message(self.state) # Status message to master
 
-            elif self.emergencyStop or self.Tbat > self.TbatMax or Fdist < MaxDist or Rdist < MaxDist:
+            elif self.emergencyStop or self.TbatF.temperature>60 or self.TbatR.temperature>60 or IRsensorFront.get_distance_IR()<5 or IRsensorRear.get_distance_IR()<5:
                 self.state = 5
                 self.serial.status_message(self.state) # Status message to master
 
