@@ -18,7 +18,7 @@ IRsensorRear = IRsensor.IRsensor(board.A0)
 USsensorFR = adafruit_hcsr04.HCSR04(trigger_pin=board.D3, echo_pin=board.D2)
 USsensorFL = adafruit_hcsr04.HCSR04(trigger_pin=board.D5, echo_pin=board.D4)
 
-wheelR = motordriver.MD13S(board.D8,board.D9)
+wheelR = motordriver.MD13S(board.D9,board.D8)
 wheelL = motordriver.MD13S(board.A15, board.A14)
 
 def readSerial():
@@ -32,7 +32,9 @@ def readSerial():
             value.pop(0)
             value = [float(i) for i in value]
             wheelL.speed_control(int(value[0]))
-            wheelR.speed_control(int(value[1]))
+            wheelL.direction_control(int(value[1]))
+            wheelR.speed_control(int(value[2]))
+            wheelR.direction_control(int(value[3]))
                       
 sonar1 = 0
 sonar2 = 0
