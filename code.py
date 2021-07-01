@@ -1,4 +1,3 @@
-from Sensoren_sender import IRsensorFront, IRsensorRear
 import time
 import board
 import IRsensor
@@ -8,31 +7,33 @@ import adafruit_ina260
 import motordriver
 from pwmio import PWMOut
 import LED
-import BMS
+# import BMS
 import communication
+from digitalio import DigitalInOut, Direction
 
 
 class Statemachine:
 
     # Emergency Stop
-    emergencyStop = board.D40
+    emergencyStop = DigitalInOut(board.D40)
+    emergencyStop.direction = Direction.INPUT
 
     # LED strip
-    LEDstatus = LED.LEDstatus
+    LEDstatus = LED.LEDstatus()
 
     # Motor drivers
-    rightMotor = motordriver.MD13S(PWM_pin=board.D8, dir_pin=board.D9, enc_pinA=board.D6, enc_pin_B=board.D7)
-    leftMotor = motordriver.MD13S(PWM_pin=board.A9, dir_pin=board.A8, enc_pinA=board.A10, enc_pin_B=board.A11)
+    rightMotor = motordriver.MD13S(PWM_pin=board.D9, dir_pin=board.D8, enc_pin_A=board.D6, enc_pin_B=board.D7)
+    leftMotor = motordriver.MD13S(PWM_pin=board.A15, dir_pin=board.A14, enc_pin_A=board.A10, enc_pin_B=board.A11)
 
     #instances Infrared distance sensors Front and rear
-    IRsensorF = IRsensor.IRsensor(board.A14)
-    IRsensorR = IRsensor.IRsensor(board.A15)
+    IRsensorF = IRsensor.IRsensor(board.A1)
+    IRsensorR = IRsensor.IRsensor(board.A0)
 
     #instances ultrasonic sensors sides
-    USsensorFR = adafruit_hcsr04.HCSR04(trigger_pin=board.D4, echo_pin=board.D5)
-    USsensorFL = adafruit_hcsr04.HCSR04(trigger_pin=board.D2, echo_pin=board.D3)
-    USsensorRR = adafruit_hcsr04.HCSR04(trigger_pin=board.A14, echo_pin=board.A15)
-    USsensorRL = adafruit_hcsr04.HCSR04(trigger_pin=board.A12, echo_pin=board.A13)
+    USsensorFR = adafruit_hcsr04.HCSR04(trigger_pin=board.D5, echo_pin=board.D4)
+    # USsensorFL = adafruit_hcsr04.HCSR04(trigger_pin=board.D2, echo_pin=board.D3)
+    USsensorRR = adafruit_hcsr04.HCSR04(trigger_pin=board.A3, echo_pin=board.A2)
+    # USsensorRL = adafruit_hcsr04.HCSR04(trigger_pin=board.A12, echo_pin=board.A13)
 
     # Communication Vars
     serial = communication.serial()
@@ -54,7 +55,7 @@ class Statemachine:
     FanPWM = PWMOut(pin = board.D31, frequency=5000, duty_cycle=0)
 
     def __init__(self):
-        state = 1 
+        self.state = 1 
 
     def safety_procedure(self):
         self.leftMotor._pwm = 0
@@ -78,14 +79,14 @@ class Statemachine:
         # Ready state
         if self.state == 1:
 
-            self.LEDstatus.blink_slow_blue()
+            Statemachine.LEDstatus.blink_slow_blue()
             print('waiting for user input')
 
             if self.serial.userInput == "start":
                 self.state = 2
                 self.serial.status_message(self.state) # Status message to master
                 
-            elif self.emergencyStop:
+            elif self.emergencyStop.value or self.TbatF.temperature>60 or self.TbatR.temperature>60 or IRsensorFront.get_distance_IR()<5 or IRsensorRear.get_distance_IR()<5:
                 self.state = 5
                 self.serial.status_message(self.state) # Status message to master
                 
@@ -156,7 +157,7 @@ class Statemachine:
             self.safety_procedure()
 
             if self.safety_check():
-                state = 1
+                self.state = 1
 
 
         print('state: ', self.state)    
@@ -165,9 +166,10 @@ class Statemachine:
 
 
 def main(args=None): 
-    Statemachine.state_flow()
+    # state_machine = Statemachine()
+    Statemachine().state_flow()
 
 
 
-if __name__ == '__main__':
+while True:
     main()

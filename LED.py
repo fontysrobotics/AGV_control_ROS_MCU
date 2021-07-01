@@ -11,7 +11,7 @@ class LEDstatus:
     CLEAR = (0, 0, 0) 
     
     def __init__(self):
-        pixel = neopixel.NeoPixel(self.PIXEL_PIN, 1, pixel_order=self.ORDER) # Create the NeoPixel object
+        self.pixel = neopixel.NeoPixel(self.PIXEL_PIN, 1, pixel_order=self.ORDER) # Create the NeoPixel object
         self.initialOnTime = time.monotonic()
         self.initialOffTime = time.monotonic()
 
