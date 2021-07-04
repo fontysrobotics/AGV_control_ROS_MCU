@@ -75,6 +75,10 @@ class Statemachine:
         oData[6] = self.IRsensorF
         oData[7] = self.IRsensorR
 
+        for i in oData:
+            print(i)
+        
+
     def state_flow(self):
         # Ready state
         if self.state == 1:

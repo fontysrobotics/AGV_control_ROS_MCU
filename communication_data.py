@@ -38,6 +38,7 @@ def readSerial():
                       
 sonar1 = 0
 sonar2 = 0
+
 while True:
     ir_back = IRsensorRear.get_distance_IR()
     ir_front = IRsensorFront.get_distance_IR()
